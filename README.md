@@ -1,7 +1,7 @@
 # 📐 Geometry Toolkit – Pure Python Implementation
 
 > A geometry utility library written from scratch in pure Python without any external libraries. Built with the intent to handle **every edge case** for line and triangle computations.  
-> Developed entirely by a **pre-college student** (IIT Madras B.S. in Data Science & IIEST CSE) in just 4 days.
+> Developed entirely by a student of (IIT Madras B.S. in Data Science) in just 4 days.
 
 ---
 
