@@ -502,22 +502,27 @@ class Coordinate:
 
                             
                     
-            elif (("x" in templ[0]) and (templ[1]!="0")):# (ax=c) format ke liye
+            elif ((("x" in templ[0]) and (templ[1]!="0")) or (("x" in templ[1]) and (templ[0]!="0"))):# (ax=c) format ke liye
+                if (("x" in templ[1]) and (templ[0]!="0")):templ[0],templ[1]=templ[1],templ[0]
                 temp_line= templ[0]+"+0y"+"-"+templ[1]+"=0"
                 return Coordinate.correct_maths_operations(temp_line)
+                    
 
-            elif ("y" in templ[0]) and (templ[1]!="0"): # (by=c) format ke liye
+            elif ((("y" in templ[0]) and (templ[1]!="0")) or (("y" in templ[1]) and (templ[0]!="0"))): # (by=c) format ke liye
+                if (("y" in templ[1]) and (templ[0]!="0")):templ[0],templ[1]=templ[1],templ[0]
                 temp_line="0x+"+templ[0]+"-"+templ[1]+"=0"
                 return Coordinate.correct_maths_operations(temp_line)
 
-            elif ("x" in templ[0]) and (templ[1]=="0"): # (x+c=0),(ax=0) format ke liye
+            elif ((("x" in templ[0]) and (templ[1]=="0")) or  (("x" in templ[1]) and (templ[0]=="0"))): # (ax+c=0),(ax=0) format ke liye
+                if (("x" in templ[1]) and (templ[0]=="0")):templ[0],templ[1]=templ[1],templ[0]
                 a=templ[0].split("x")[0]
                 c=templ[0].split("x")[1]
                 if a=="":a="1"
                 if c=="":c="0"
                 temp_line=a+"x"+"+0y"+"+"+c+"=0"
                 return Coordinate.correct_maths_operations(temp_line)
-            elif ("y" in templ[0]) and (templ[1]=="0"):# (by+c=0),(bx=0) format ke liye
+            elif ("y" in templ[0]) and (templ[1]=="0"):# (by+c=0),(bx=0),(0=by) and (0=by+c) format ke liye
+                if (("y" in templ[1]) and (templ[0]=="0")):templ[0],templ[1]=templ[1],templ[0] # Check (0=by) and (0=by+c) format ke liye
                 b=templ[0].split("y")[0]
                 c=templ[0].split("y")[1]
                 if b=="":b="1"
@@ -585,3 +590,4 @@ class Coordinate:
                 line=a+"x"+"+"+b+"y+"+c+"=0"
                 return Coordinate.correct_maths_operations(line)
 
+print(Coordinate.standardize_line_equation("0=6x"))
