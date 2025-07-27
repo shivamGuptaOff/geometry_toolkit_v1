@@ -589,5 +589,3 @@ class Coordinate:
                 if a=="":a="1"
                 line=a+"x"+"+"+b+"y+"+c+"=0"
                 return Coordinate.correct_maths_operations(line)
-
-print(Coordinate.standardize_line_equation("0=6x"))
